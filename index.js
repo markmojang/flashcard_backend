@@ -1,18 +1,10 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const connectDB = require('./db.js'); // Import ฟังก์ชันเชื่อมต่อ
-// const Flashcard = require('./Model/flashcard.js');
+const flashcardModel = require('./Model/flashcard.js');
 const PORT = 8000;
 const app = express();
 
-const flashcardSchema = new mongoose.Schema({
-    "front": String,
-    "back": String,
-    "user": String,
-    "Set_name": String
-});
-
-const flashcardModel = mongoose.model("Flashcard", flashcardSchema, "flashcard_info");
 
 connectDB(); // เรียกใช้ฟังก์ชันเชื่อมต่อ
 

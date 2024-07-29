@@ -22,10 +22,20 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   }));
   
+
 app.get('/flash_info', async (req, res) => {
     console.log("Request received for /flash_info");
     try {
-        const flash_info = await flashcardModel.find();
+        const setName = req.query.Set_name; // Get Set_name from query
+        const user = req.query.user;
+        let query = {};
+        if (setName) {
+            query.Set_name = setName; // Add filter if Set_name is provided
+        }
+        if (user){
+            query.user = user;
+        }
+        const flash_info = await flashcardModel.find(query);
         res.json(flash_info);
       } catch (err) {
         console.error(err); // แสดง error ใน console

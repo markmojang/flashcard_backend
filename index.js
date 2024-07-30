@@ -16,11 +16,13 @@ app.listen(PORT, () => {
     console.log(`server listening on ${PORT}`)
 })
 
-app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your frontend's origin
-    methods: ['GET', 'POST'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-  }));
+app.use(cors(
+//     {
+//     origin: 'localhost:3000', // Replace with your frontend's origin
+//     methods: ['GET', 'POST'], // Allowed HTTP methods
+//     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+//   }
+));
   
 
 app.get('/flash_info', async (req, res) => {
@@ -53,3 +55,27 @@ app.post('/add_flashcard', async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 });
+
+app.delete('/delete_flashcard', async (req, res) => {
+    try {
+      const { user, Set_name, front, back } = req.query; 
+      console.log(user,Set_name, front, back);
+      const deletedFlashcard = await flashcardModel.findOneAndDelete({
+        user: user,
+        Set_name: Set_name,
+        front: front,
+        back: back
+      });
+  
+      if (!deletedFlashcard) {
+        return res.status(404).json({ message: 'Flashcard not found' });
+      }
+      else{
+      res.status(200).json({ message: 'Flashcard deleted successfully' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  

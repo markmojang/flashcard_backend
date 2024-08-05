@@ -28,7 +28,7 @@ app.use(cors(
 app.get('/flash_info', async (req, res) => {
     console.log("Request received for /flash_info");
     try {
-        const setName = req.query.Set_name; // Get Set_name from query
+        const setName = decodeURIComponent(req.query.Set_name); // Get Set_name from query
         const user = req.query.user;
         let query = {};
         if (setName) {
@@ -62,7 +62,7 @@ app.delete('/delete_flashcard', async (req, res) => {
       console.log(user,Set_name, front, back);
       const deletedFlashcard = await flashcardModel.findOneAndDelete({
         user: user,
-        Set_name: Set_name,
+        Set_name: decodeURIComponent(Set_name),
         front: front,
         back: back
       });
@@ -85,7 +85,7 @@ app.delete('/delete_flashcard', async (req, res) => {
   
       const filter = {};
       filter["user"] = user;
-      filter["Set_name"] = Set_name; 
+      filter["Set_name"] = decodeURIComponent(Set_name); 
   
       const result = await flashcardModel.deleteMany(filter);
       

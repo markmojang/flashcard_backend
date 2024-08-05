@@ -78,4 +78,22 @@ app.delete('/delete_flashcard', async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   });
+
+  app.delete('/delete_set', async (req, res) => {
+    try {
+      const { user, Set_name } = req.query; 
+  
+      const filter = {};
+      filter["user"] = user;
+      filter["Set_name"] = Set_name; 
+  
+      const result = await flashcardModel.deleteMany(filter);
+      
+      res.json({ message: `${result.deletedCount} data deleted` });
+    } 
+    catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
   

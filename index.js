@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const connectDB = require('./db.js'); // Import ฟังก์ชันเชื่อมต่อ
 const flashcardModel = require('./Model/flashcard.js');
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;;
 const app = express();
 
 

@@ -6,7 +6,7 @@ const PORT = 8000;
 
 async function connectDB() {
   try {
-    await mongoose.connect('mongodb+srv://admin:admin6506@cluster0.0tcdjdu.mongodb.net/Flashcard');
+    await mongoose.connect('Database here'); 
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);

@@ -6,7 +6,7 @@ const PORT = 8000;
 
 async function connectDB() {
   try {
-    await mongoose.connect('Database here'); 
+    await mongoose.connect(dataBaseHere);
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);

@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const connectDB = require('./db.js'); // Import ฟังก์ชันเชื่อมต่อ
 const flashcardModel = require('./Model/flashcard.js');
-const PORT = process.env.PORT || 8000;;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 
@@ -16,13 +16,7 @@ app.listen(PORT, () => {
     console.log(`server listening on ${PORT}`)
 })
 
-app.use(cors(
-//     {
-//     origin: 'localhost:3000', // Replace with your frontend's origin
-//     methods: ['GET', 'POST'], // Allowed HTTP methods
-//     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-//   }
-));
+app.use(cors());
   
 
 app.get('/flash_info', async (req, res) => {
